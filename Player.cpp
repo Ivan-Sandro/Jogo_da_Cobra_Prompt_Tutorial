@@ -54,7 +54,7 @@ void Player::_Mover_Player(Plano &Display){
             Jogador_Posisoes[0][0]++;
         break;
     }
-    printf("%d", Jogador_Posisoes[0][0]);
+   
     for(unsigned short int X = Tamanho_Jogador ; X > 0 ; X--){
         Jogador_Posisoes[X][1] = Jogador_Posisoes[X+1][1];
         Jogador_Posisoes[X][0] = Jogador_Posisoes[X+1][0];
