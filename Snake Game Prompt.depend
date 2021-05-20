@@ -1,0 +1,36 @@
+# depslib dependency file v1.0
+1621546757 source:c:\meus arquivos\scripts\c-c++\snake game prompt\main.cpp
+	<iostream>
+	"Desenhos.h"
+	"Mapa.h"
+	"Player.h"
+
+1621522208 source:c:\meus arquivos\scripts\c-c++\snake game prompt\desenhos.cpp
+	"Desenhos.h"
+
+1621365324 c:\meus arquivos\scripts\c-c++\snake game prompt\desenhos.h
+	<cstdio>
+	<windows.h>
+	<conio.h>
+
+1621547588 source:c:\meus arquivos\scripts\c-c++\snake game prompt\mapa.cpp
+	"Mapa.h"
+	"Desenhos.h"
+
+1621547517 c:\meus arquivos\scripts\c-c++\snake game prompt\mapa.h
+
+1621547337 source:c:\meus arquivos\scripts\c-c++\snake game prompt\player.cpp
+	"Player.h"
+
+1621546298 c:\meus arquivos\scripts\c-c++\snake game prompt\player.h
+	"Mapa.h"
+	<conio.h>
+	<cstdio>
+
+1621542096 source:c:\meus arquivos\scripts\c-c++\snake game prompt\eventos.cpp
+	"Eventos.h"
+
+1621541664 c:\meus arquivos\scripts\c-c++\snake game prompt\eventos.h
+	"Mapa.h"
+	<conio.h>
+
