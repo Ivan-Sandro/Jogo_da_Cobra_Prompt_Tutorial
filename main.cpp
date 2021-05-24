@@ -7,6 +7,7 @@ using namespace std;
 
 int main()
 {
+    srand(time(NULL));
     /*unsigned char X = 0;
     for(int B = 0 ; B < 255 ; B++){
         std::cout << B << " === " << X << endl;
@@ -20,18 +21,18 @@ int main()
     getch();
 
     Player Jogador;
-
+    Plano_Mapa._Gerar_Fruta();
     unsigned char EXIT_PROGRAM = false;
 
     while(EXIT_PROGRAM == false)
     {
+        system("cls");
+        Plano_Mapa._Desenhar_Mapa();
         Jogador._Direcionar_Player();
         Jogador._Mover_Player(Plano_Mapa);
 
-        system("cls");
-        Plano_Mapa._Desenhar_Mapa();
+        Sleep(100);
 
-        Sleep(300);
     }
 
 
