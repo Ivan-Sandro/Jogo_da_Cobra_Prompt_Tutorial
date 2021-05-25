@@ -8,11 +8,7 @@ using namespace std;
 int main()
 {
     srand(time(NULL));
-    /*unsigned char X = 0;
-    for(int B = 0 ; B < 255 ; B++){
-        std::cout << B << " === " << X << endl;
-        X++;
-    }*/
+   
     _Desenhar_Menu();
     getch();
     system("cls");
