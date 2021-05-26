@@ -32,10 +32,10 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="Desenhos.cpp" />
-		<Unit filename="Desenhos.h" />
-		<Unit filename="Mapa.cpp" />
-		<Unit filename="Mapa.h" />
+		<Unit filename="Display.cpp" />
+		<Unit filename="Display.h" />
+		<Unit filename="Player.cpp" />
+		<Unit filename="Player.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />

@@ -1,4 +1,3 @@
-
 #include "Player.h"
 
 #define DIRESAO_UP 1
@@ -6,7 +5,26 @@
 #define DIRESAO_LEFT 3
 #define DIRESAO_RIGHT 4
 
-void Player::_Direcionar_Player(void){
+unsigned short int _PLAYER::_Get_Pontos(void){
+    return Pontos;
+}
+
+unsigned char _PLAYER::_Get_Vida(void){
+    return Vida;
+}
+
+void _PLAYER::_Push_Pontos(unsigned char Nova_Pontuasao){
+    Pontos = Nova_Pontuasao;
+}
+void _PLAYER::_push_Vida(unsigned char Novo_Estado){
+    Vida = Novo_Estado;
+}
+
+unsigned char _PLAYER::_Get_Posisao(unsigned char X, unsigned char Y){
+    return Jogador_Posisoes[X][Y];
+}
+
+void _PLAYER::_Direcionar_Player(void){
 
     if(_kbhit())
     {
@@ -31,25 +49,30 @@ void Player::_Direcionar_Player(void){
     }
 }
 
-void Player::_Evento_Impacto_Player(Plano &Display){
+void _PLAYER::_Iniciar_Jogador_Posisoes(unsigned char X, unsigned char Y){
+    Jogador_Posisoes[0][0] = X;
+    Jogador_Posisoes[0][1] = Y;
+}
 
-    if(Display._Verificar_Impacto(Jogador_Posisoes[0][0], Jogador_Posisoes[0][1], 'P')){
-        printf("morreu");
+void _PLAYER::_Evento_Impacto_Player(_PLANO &Display){
+
+    if(Display._Verificar_Objeto_Plano( _Get_Posisao(0, 0), _Get_Posisao(0, 1), 'P')){
+        _push_Vida(false);
     }
-    else if(Display._Verificar_Impacto(Jogador_Posisoes[0][0], Jogador_Posisoes[0][1], 'F')){
-        printf("FRUTINHA");
+    else if(Display._Verificar_Objeto_Plano(_Get_Posisao(0, 0), _Get_Posisao(0, 1), 'F')){
         Display._Gerar_Fruta();
+        Tamanho_Jogador++;
+        _Push_Pontos(_Get_Pontos() + 10);
     }
-    else if(Display._Verificar_Impacto(Jogador_Posisoes[0][0], Jogador_Posisoes[0][1], 'B')){
-        printf("Morreu barreirinha");
+    else if(Display._Verificar_Objeto_Plano(_Get_Posisao(0, 0), _Get_Posisao(0, 1), 'B')){
+        _push_Vida(false);
     }
 
 }
 
+void _PLAYER::_Mover_Player(_PLANO &Display){
+    Display._Push_Mapa(Jogador_Posisoes[Tamanho_Jogador][0], Jogador_Posisoes[Tamanho_Jogador][1], 0);
 
-void Player::_Mover_Player(Plano &Display){
-
-    Display._Mudar_Valor_Mapa(Jogador_Posisoes[Tamanho_Jogador][0], Jogador_Posisoes[Tamanho_Jogador][1], 0);
     switch(Diresao)
     {
         case DIRESAO_UP:
@@ -66,13 +89,14 @@ void Player::_Mover_Player(Plano &Display){
         break;
     }
 
-    for(unsigned short int X = Tamanho_Jogador ; X > 0 ; X--){
-        Jogador_Posisoes[X][1] = Jogador_Posisoes[X+1][1];
-        Jogador_Posisoes[X][0] = Jogador_Posisoes[X+1][0];
-    }
-
     _Evento_Impacto_Player(Display);
 
-    Display._Mudar_Valor_Mapa(Jogador_Posisoes[0][0], Jogador_Posisoes[0][1], 5);
+    for(short int X = Tamanho_Jogador ; X > 0 ; X--){
+        Jogador_Posisoes[X][1] = Jogador_Posisoes[X-1][1];
+        Jogador_Posisoes[X][0] = Jogador_Posisoes[X-1][0];
+    }
+
+    Display._Push_Mapa(Jogador_Posisoes[0][0], Jogador_Posisoes[0][1], 5);
+
 }
 
