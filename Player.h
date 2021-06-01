@@ -14,7 +14,7 @@ class _PLAYER {
         unsigned char Jogador_Posisoes[(LARGURA_MAPA-2)*(ALTURA_MAPA-2)+1][2];  // [][0] -> X || [][1] -> Y //
 
         unsigned char Diresao = 0;
-        unsigned short int Tamanho_Jogador = 0;
+        unsigned short int Tamanho_Jogador = 1;
 
     public:
         unsigned short int _Get_Pontos(void);
