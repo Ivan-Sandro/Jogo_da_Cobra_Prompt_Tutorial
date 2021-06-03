@@ -1,3 +1,7 @@
 # Snake_Game_CMD_Basic_tutorial
 
-this is a simple project, do not is finalized, is a basic and typical Snake Game for any beginned can see the code, in the future I intend to explain it here
+Snake Game is a simple game, I divided this project in 2 main files (ignoring the "main" file):
+
+Display, have the commands for drawn the map, and all the structures you will see.
+
+Player, have the commands for the player, your movement for example.
