@@ -1,102 +1,98 @@
+
 #include "Player.h"
 
-#define DIRESAO_UP 1
-#define DIRESAO_DOWN 2
-#define DIRESAO_LEFT 3
-#define DIRESAO_RIGHT 4
+void _PLAYER::_Iniciar_Posisoes(unsigned char X, unsigned char Y){
+    Posisoes_Cobra_X.push_back(X);
+    Posisoes_Cobra_Y.push_back(Y);
+    Posisoes_Cobra_X.push_back(X);
+    Posisoes_Cobra_Y.push_back(Y);
+    Numero_Bloco_Cobra.push_back(1);
+    Numero_Bloco_Cobra.push_back(0);
+}
 
-unsigned short int _PLAYER::_Get_Pontos(void){
-    return Pontos;
+void _PLAYER::_Direcionar_Player(void){
+    if(_kbhit())
+    {
+        switch(_getch())
+        {
+            case 'w':
+                Diresao = UP;
+            break;
+
+            case 's':
+                Diresao = DOWN;
+            break;
+
+            case 'a':
+                Diresao = LEFT;
+            break;
+
+            case 'd':
+                Diresao = RIGHT;
+            break;
+        }
+    }
+}
+void _PLAYER::_Mover_Player(void){
+    switch(Diresao)
+    {
+        case UP:
+            Posisoes_Cobra_Y[0]--;
+        break;
+
+        case DOWN:
+            Posisoes_Cobra_Y[0]++;
+        break;
+
+        case LEFT:
+            Posisoes_Cobra_X[0]--;
+        break;
+
+        case RIGHT:
+            Posisoes_Cobra_X[0]++;
+        break;
+    }
+}
+
+void _PLAYER::_Puxar_Corpo(void){
+    for(short int X = short(Numero_Bloco_Cobra.size()) ; X > 0 ; X--){
+        Posisoes_Cobra_X[X] = Posisoes_Cobra_X[X-1];
+        Posisoes_Cobra_Y[X] = Posisoes_Cobra_Y[X-1];
+    }
+}
+
+void _PLAYER::_Desenhar_Player(void){
+    for(short int X = short(Numero_Bloco_Cobra.size())-1 ; X >= 0 ; X--){
+        _gotoxy(Posisoes_Cobra_X[X], Posisoes_Cobra_Y[X]);
+        printf("%c", Representar_Numero_corpo[Numero_Bloco_Cobra[X]]);
+    }
+}
+
+void _PLAYER::_Verificar_Impacto(_PLANO &Janela){
+    if(Janela._Get_Estrutura_Mapa(Posisoes_Cobra_X[0], Posisoes_Cobra_Y[0], 1) == 'B'){
+        Vida--;
+    }
+    if(Janela._Get_Estrutura_Mapa(Posisoes_Cobra_X[0], Posisoes_Cobra_Y[0], 1) == 'F'){
+        Numero_Bloco_Cobra.pop_back();
+        Numero_Bloco_Cobra.push_back(2);
+        Numero_Bloco_Cobra.push_back(0);
+        //Janela._Criar_Fruta(Posisoes_Cobra_X, Posisoes_Cobra_Y);
+    }
+    for(short int X = 1 ; X < short(Numero_Bloco_Cobra.size())-1 ; X++){
+        if(Posisoes_Cobra_X[0] == Posisoes_Cobra_X[X] && Posisoes_Cobra_Y[0] == Posisoes_Cobra_Y[X]){
+            Vida--;
+        }
+    }
+
 }
 
 unsigned char _PLAYER::_Get_Vida(void){
     return Vida;
 }
 
-void _PLAYER::_Push_Pontos(unsigned char Nova_Pontuasao){
-    Pontos = Nova_Pontuasao;
+std::vector <unsigned char> _PLAYER::_Get_Posisoes_Cobra_X(void){
+    return Posisoes_Cobra_X;
 }
-void _PLAYER::_push_Vida(unsigned char Novo_Estado){
-    Vida = Novo_Estado;
+std::vector <unsigned char> _PLAYER::_Get_Posisoes_Cobra_Y(void){
+    return Posisoes_Cobra_Y;
 }
-
-unsigned char _PLAYER::_Get_Posisao(unsigned char X, unsigned char Y){
-    return Jogador_Posisoes[X][Y];
-}
-
-void _PLAYER::_Direcionar_Player(void){
-
-    if(_kbhit())
-    {
-        switch(_getch())
-        {
-            case 'w':
-                if(Diresao != DIRESAO_DOWN)Diresao = DIRESAO_UP;
-            break;
-
-            case 's':
-                if(Diresao != DIRESAO_UP)Diresao = DIRESAO_DOWN;
-            break;
-
-            case 'a':
-                if(Diresao != DIRESAO_RIGHT)Diresao = DIRESAO_LEFT;
-            break;
-
-            case 'd':
-                if(Diresao != DIRESAO_LEFT)Diresao = DIRESAO_RIGHT;
-            break;
-        }
-    }
-}
-
-void _PLAYER::_Iniciar_Jogador_Posisoes(unsigned char X, unsigned char Y){
-    Jogador_Posisoes[0][0] = X;
-    Jogador_Posisoes[0][1] = Y;
-}
-
-void _PLAYER::_Evento_Impacto_Player(_PLANO &Display){
-
-    if(Display._Verificar_Objeto_Plano( _Get_Posisao(0, 0), _Get_Posisao(0, 1), 'P')){
-        _push_Vida(false);
-    }
-    else if(Display._Verificar_Objeto_Plano(_Get_Posisao(0, 0), _Get_Posisao(0, 1), 'F')){
-        Display._Gerar_Fruta();
-        Tamanho_Jogador++;
-        _Push_Pontos(_Get_Pontos() + 10);
-    }
-    else if(Display._Verificar_Objeto_Plano(_Get_Posisao(0, 0), _Get_Posisao(0, 1), 'B')){
-        _push_Vida(false);
-    }
-
-}
-
-void _PLAYER::_Mover_Player(_PLANO &Display){
-    Display._Push_Mapa(Jogador_Posisoes[Tamanho_Jogador][0], Jogador_Posisoes[Tamanho_Jogador][1], 0);
-
-    switch(Diresao)
-    {
-        case DIRESAO_UP:
-            Jogador_Posisoes[0][1]--;
-        break;
-        case DIRESAO_DOWN:
-            Jogador_Posisoes[0][1]++;
-        break;
-        case DIRESAO_LEFT:
-            Jogador_Posisoes[0][0]--;
-        break;
-        case DIRESAO_RIGHT:
-            Jogador_Posisoes[0][0]++;
-        break;
-    }
-
-    _Evento_Impacto_Player(Display);
-
-    for(short int X = Tamanho_Jogador ; X > 0 ; X--){
-        Jogador_Posisoes[X][1] = Jogador_Posisoes[X-1][1];
-        Jogador_Posisoes[X][0] = Jogador_Posisoes[X-1][0];
-    }
-
-    Display._Push_Mapa(Jogador_Posisoes[0][0], Jogador_Posisoes[0][1], 5);
-
-}
-

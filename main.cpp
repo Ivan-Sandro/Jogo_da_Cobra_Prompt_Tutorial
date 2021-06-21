@@ -1,37 +1,36 @@
+
 #include "Display.h"
 #include "Player.h"
+#include <conio.h>
+#include <ctime>
 
 using namespace std;
 
 int main()
 {
-    srand(time(NULL));
-
     _Desenhar_Menu();
-    getch();
+    _getch();
+
     system("cls");
 
-    _PLANO Plano_Mapa;
+    srand(time(NULL));
+    _PLANO Janela;
     _PLAYER Jogador;
 
-    Plano_Mapa._Gerar_Fruta();
-    Plano_Mapa._Desenhar_Mapa();
-    Jogador._Iniciar_Jogador_Posisoes(10, 10);
+    Jogador._Iniciar_Posisoes(10, 10);
 
-    while(Jogador._Get_Vida() == true)
+    Janela._Criar_Fruta(Jogador._Get_Posisoes_Cobra_X(), Jogador._Get_Posisoes_Cobra_Y());
+    Janela._Desenhar_Plano();
+
+    while(Jogador._Get_Vida() > 0)
     {
-        system("cls");
-        Plano_Mapa._Desenhar_Mapa();
-        _Printar_Pontos(Jogador._Get_Pontos());
+        Jogador._Puxar_Corpo();
         Jogador._Direcionar_Player();
-        Jogador._Mover_Player(Plano_Mapa);
-
+        Jogador._Mover_Player();
+        Jogador._Desenhar_Player();
+        Jogador._Verificar_Impacto(Janela);
         Sleep(100);
-
     }
-
-    _gotoxy(40, 15);
-    printf("MORREU!");
-    getch();
+    _getch();
     return 0;
 }

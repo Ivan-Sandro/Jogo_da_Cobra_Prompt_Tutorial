@@ -5,25 +5,65 @@ void _gotoxy (short int X, short int Y){
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),(COORD){X, Y});
 }
 
-void _Desenhar_Menu(void){
+unsigned char _PLANO::_Get_Estrutura_Mapa(unsigned char Mapa_X, unsigned char Mapa_Y, unsigned char Tipo_Estrutura){
+    if(Mapa[Mapa_X][Mapa_Y] != 0)
+        return Estruturas[Mapa[Mapa_X][Mapa_Y]-1][Tipo_Estrutura];
+    else
+        return 0;
+}
 
+void _PLANO::_Desenhar_Plano(void){
+    for(unsigned char X = 0 ; X < 20 ; X++){
+        for(unsigned char Y = 0 ; Y < 20 ; Y++){
+            if(Mapa[X][Y] != 0){
+                _gotoxy(X, Y);
+                printf("%c", Estruturas[Mapa[X][Y]-1][0]);
+            }
+        }
+    }
+}
+
+void _PLANO::_Criar_Fruta(std::vector <unsigned char> Posisoes_Invalidas_X, std::vector <unsigned char> Posisoes_Invalidas_Y){
+    unsigned char Posisao_Fruta_X;
+    unsigned char Posisao_Fruta_Y;
+    unsigned char Posisao_Valida;
+    do
+    {
+        Posisao_Valida = 0;
+
+        Posisao_Fruta_X = (rand() % 20);
+        Posisao_Fruta_Y = (rand() % 20);
+
+        if(Estruturas[Mapa[Posisao_Fruta_X][Posisao_Fruta_Y]-1][1] == 'B' ||
+           Estruturas[Mapa[Posisao_Fruta_X][Posisao_Fruta_Y]-1][1] == 'F'){
+            Posisao_Valida = 1;
+        }else{
+            for(short int X = 0 ; X < short(Posisoes_Invalidas_X.size()) ; X++)
+            {
+                if(Posisao_Fruta_X == Posisoes_Invalidas_X[X] && Posisao_Fruta_Y == Posisoes_Invalidas_Y[X]){
+                    Posisao_Valida = 1;
+                }
+            }
+        }
+    }while(Posisao_Valida == 1);
+    Mapa[Posisao_Fruta_X][Posisao_Fruta_Y] = 4;
+    _gotoxy(Posisao_Fruta_X, Posisao_Fruta_Y);
+    printf("%c", Estruturas[3][0]);
+}
+
+void _Desenhar_Menu(void){
     for(unsigned short int Y = 1 ; Y <= 20 ; Y++){
         _gotoxy(0, Y);
         printf("%c", 219);
         _gotoxy(50, Y);
         printf("%c", 219);
     }
-
     for(unsigned short int X = 0 ; X <= 50 ; X++){
         _gotoxy(X, 0);
         printf("%c", 220);
-    }
-
-    for(unsigned short int X = 0 ; X <= 50 ; X++){
         _gotoxy(X, 20);
         printf("%c", 223);
     }
-
 
     for(unsigned short int X = 1 ; X < 50 ; X++){
         for(unsigned short int Y = 1 ; Y < 20 ; Y++){
@@ -35,56 +75,3 @@ void _Desenhar_Menu(void){
     _gotoxy(14, 9);
     printf("TECLE ALGO PARA INICIAR!");
 }
-
-void _Printar_Pontos(unsigned int Pontos){
-    _gotoxy(30, 10);
-    printf("PONTOS: %d", Pontos);
-}
-
-bool _PLANO::_Verificar_Objeto_Plano( unsigned char Mapa_X, unsigned char Mapa_Y, unsigned char Objeto){
-
-    for(unsigned char X = 0 ; X < Quantidade_Estruturas ; X++){
-        if(Mapa[Mapa_X][Mapa_Y] == Estruturas[X][0]){
-            if(Estruturas[X][2] == Objeto)return true;
-        }
-    }
-    return false;
-}
-void _PLANO::_Gerar_Fruta(void){
-    unsigned char Pos_X;
-    unsigned char Pos_Y;
-    do
-    {
-        Pos_X = (rand() % LARGURA_MAPA);
-        Pos_Y = (rand() % ALTURA_MAPA);
-
-    }while(_Verificar_Objeto_Plano(Pos_X, Pos_Y, 'P') || _Verificar_Objeto_Plano( Pos_X, Pos_Y, 'B'));
-    Mapa[Pos_X][Pos_Y] = Estruturas[3][0];
-}
-
-unsigned char _PLANO::_Get_Estrutura(unsigned char Estrutura, unsigned char Tipo_Representar){
-    return Estruturas[Estrutura][Tipo_Representar];
-}
-unsigned char _PLANO::_Get_Quantidade_Estruturas(void){
-    return Quantidade_Estruturas;
-}
-
-void _PLANO::_Desenhar_Mapa(void){
-
-    for(unsigned short int Y = 0 ; Y < ALTURA_MAPA ; Y++){
-        for(unsigned short int X = 0 ; X < LARGURA_MAPA ; X++){
-            if(Mapa[X][Y]!= 0){
-                _gotoxy(X, Y);
-                printf("%c", Estruturas[Mapa[X][Y]-1][1]);
-            }
-        }
-    }
-}
-unsigned char _PLANO::_Get_Mapa(unsigned char X, unsigned char Y){
-    return Mapa[X][Y];
-}
-void _PLANO::_Push_Mapa(unsigned char X, unsigned char Y, unsigned char Valor){
-    Mapa[X][Y] = Valor;
-}
-
-
