@@ -29,10 +29,10 @@ class _PLANO{
                                         2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
                                         2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3};
 
-        unsigned char Estruturas[4][2]   =  {219, 'B',   // Esquerda -> Representação mapa
-                                             220, 'B',   // Meio     -> Representação em ASCII
+        unsigned char Estruturas[4][2]   =  {219, 'B',   // Esquerda -> RepresentaÃ§Ã£o mapa
+                                             220, 'B',   // Meio     -> RepresentaÃ§Ã£o em ASCII
                                              223, 'B',   // Direita  -> Tipo de Estrutura
-                                             233, 'F'};  // 'B' -> Barreira || 'P' -> Player || 'F' -> Fruta
+                                             233, 'F'};  // 'B' -> Barreira || 'F' -> Fruta
 
 
         unsigned char Quantidade_Estruturas = 4;
