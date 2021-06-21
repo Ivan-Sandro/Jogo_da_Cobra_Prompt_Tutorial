@@ -34,9 +34,6 @@ class _PLANO{
                                              223, 'B',   // Direita  -> Tipo de Estrutura
                                              233, 'F'};  // 'B' -> Barreira || 'F' -> Fruta
 
-
-        unsigned char Quantidade_Estruturas = 4;
-
     public:
         void _Desenhar_Plano(void);
         void _Criar_Fruta(std::vector <unsigned char> Posisoes_Invalidas_X, std::vector <unsigned char> Posisoes_Invalidas_Y);
