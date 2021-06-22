@@ -76,7 +76,6 @@ void _PLAYER::_Verificar_Impacto(_PLANO &Janela){
         Numero_Bloco_Cobra.pop_back();
         Numero_Bloco_Cobra.push_back(2);
         Numero_Bloco_Cobra.push_back(0);
-        //Janela._Criar_Fruta(Posisoes_Cobra_X, Posisoes_Cobra_Y);
     }
     for(short int X = 1 ; X < short(Numero_Bloco_Cobra.size())-1 ; X++){
         if(Posisoes_Cobra_X[0] == Posisoes_Cobra_X[X] && Posisoes_Cobra_Y[0] == Posisoes_Cobra_Y[X]){
