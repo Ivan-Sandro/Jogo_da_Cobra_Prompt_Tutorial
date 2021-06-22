@@ -23,34 +23,6 @@ void _PLANO::_Desenhar_Plano(void){
     }
 }
 
-void _PLANO::_Criar_Fruta(std::vector <unsigned char> Posisoes_Invalidas_X, std::vector <unsigned char> Posisoes_Invalidas_Y){
-    unsigned char Posisao_Fruta_X;
-    unsigned char Posisao_Fruta_Y;
-    unsigned char Posisao_Valida;
-    do
-    {
-        Posisao_Valida = 0;
-
-        Posisao_Fruta_X = (rand() % 20);
-        Posisao_Fruta_Y = (rand() % 20);
-
-        if(Estruturas[Mapa[Posisao_Fruta_X][Posisao_Fruta_Y]-1][1] == 'B' ||
-           Estruturas[Mapa[Posisao_Fruta_X][Posisao_Fruta_Y]-1][1] == 'F'){
-            Posisao_Valida = 1;
-        }else{
-            for(short int X = 0 ; X < short(Posisoes_Invalidas_X.size()) ; X++)
-            {
-                if(Posisao_Fruta_X == Posisoes_Invalidas_X[X] && Posisao_Fruta_Y == Posisoes_Invalidas_Y[X]){
-                    Posisao_Valida = 1;
-                }
-            }
-        }
-    }while(Posisao_Valida == 1);
-    Mapa[Posisao_Fruta_X][Posisao_Fruta_Y] = 4;
-    _gotoxy(Posisao_Fruta_X, Posisao_Fruta_Y);
-    printf("%c", Estruturas[3][0]);
-}
-
 void _Desenhar_Menu(void){
     for(unsigned short int Y = 1 ; Y <= 20 ; Y++){
         _gotoxy(0, Y);
