@@ -73,9 +73,12 @@ void _PLAYER::_Verificar_Impacto(_PLANO &Janela){
         Vida--;
     }
     if(Janela._Get_Estrutura_Mapa(Posisoes_Cobra_X[0], Posisoes_Cobra_Y[0], 1) == 'F'){
+        Janela._Mudar_Valor_Mapa(Posisoes_Cobra_X[0], Posisoes_Cobra_Y[0], 0);
         Numero_Bloco_Cobra.pop_back();
         Numero_Bloco_Cobra.push_back(2);
         Numero_Bloco_Cobra.push_back(0);
+        Posisoes_Cobra_X.push_back(Posisoes_Cobra_X[0]);
+        Posisoes_Cobra_Y.push_back(Posisoes_Cobra_Y[0]);
     }
     for(short int X = 1 ; X < short(Numero_Bloco_Cobra.size())-1 ; X++){
         if(Posisoes_Cobra_X[0] == Posisoes_Cobra_X[X] && Posisoes_Cobra_Y[0] == Posisoes_Cobra_Y[X]){
@@ -85,7 +88,7 @@ void _PLAYER::_Verificar_Impacto(_PLANO &Janela){
 
 }
 
-unsigned char _PLAYER::_Get_Vida(void){
+char _PLAYER::_Get_Vida(void){
     return Vida;
 }
 
