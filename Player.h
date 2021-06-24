@@ -12,7 +12,7 @@
 
 class _PLAYER{
     private:
-        unsigned char Vida = 1;
+        char Vida = 1;
         char Diresao = 0;
 
         std::vector <unsigned char> Posisoes_Cobra_X;
@@ -29,7 +29,7 @@ class _PLAYER{
         void _Direcionar_Player(void);
         void _Mover_Player(void);
         void _Desenhar_Player(void);
-        unsigned char _Get_Vida(void);
+        char _Get_Vida(void);
         std::vector <unsigned char> _Get_Posisoes_Cobra_X(void);
         std::vector <unsigned char> _Get_Posisoes_Cobra_Y(void);
 
