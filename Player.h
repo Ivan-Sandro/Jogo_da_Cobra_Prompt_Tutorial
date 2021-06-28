@@ -9,11 +9,11 @@
 #define DOWN    2
 #define LEFT    3
 #define RIGHT   4
-
 class _PLAYER{
     private:
         char Vida = 1;
         char Diresao = 0;
+        short int Pontos = 0;
 
         std::vector <unsigned char> Posisoes_Cobra_X;
         std::vector <unsigned char> Posisoes_Cobra_Y;
@@ -29,9 +29,13 @@ class _PLAYER{
         void _Direcionar_Player(void);
         void _Mover_Player(void);
         void _Desenhar_Player(void);
+
+        void _Somar_Pontos(void);
+        void _Printar_Pontos(void);
+
         char _Get_Vida(void);
-        std::vector <unsigned char> _Get_Posisoes_Cobra_X(void);
-        std::vector <unsigned char> _Get_Posisoes_Cobra_Y(void);
+        std::vector <unsigned char> &_Get_Posisoes_Cobra_X(void);
+        std::vector <unsigned char> &_Get_Posisoes_Cobra_Y(void);
 
 };
 
