@@ -23,22 +23,56 @@ void _PLANO::_Desenhar_Plano(void){
     }
 }
 
+void _PLANO::_Mudar_Valor_Mapa(unsigned char Mapa_X, unsigned char Mapa_Y, unsigned char Valor){
+    Mapa[Mapa_X][Mapa_Y] = Valor;
+}
+
+void _PLANO::_Criar_Fruta(std::vector <unsigned char> &Posisoes_Invalidas_X, std::vector <unsigned char> &Posisoes_Invalidas_Y){
+    unsigned char Posisao_Fruta_X;
+    unsigned char Posisao_Fruta_Y;
+    unsigned char Posisao_Valida;
+
+    do
+    {
+        Posisao_Valida = 0;
+
+        Posisao_Fruta_X = rand() % 20;
+        Posisao_Fruta_Y = rand() % 20;
+
+        if(Mapa[Posisao_Fruta_X][Posisao_Fruta_Y] != 0){
+            Posisao_Valida = 1;
+        }else{
+            for(short int X = 0 ; X < short(Posisoes_Invalidas_X.size()) ; X++)
+            {
+                if(Posisao_Fruta_X == Posisoes_Invalidas_X[X] && Posisao_Fruta_Y == Posisoes_Invalidas_Y[X]){
+                    Posisao_Valida = 1;
+                }
+            }
+        }
+
+
+    }while(Posisao_Valida != 0);
+    Mapa[Posisao_Fruta_X][Posisao_Fruta_Y] = 4;
+    _gotoxy(Posisao_Fruta_X, Posisao_Fruta_Y);
+    printf("%c", Estruturas[3][0]);
+}
+
 void _Desenhar_Menu(void){
-    for(unsigned short int Y = 1 ; Y <= 20 ; Y++){
+    for(unsigned char Y = 1 ; Y <= 20 ; Y++){
         _gotoxy(0, Y);
         printf("%c", 219);
         _gotoxy(50, Y);
         printf("%c", 219);
     }
-    for(unsigned short int X = 0 ; X <= 50 ; X++){
+    for(unsigned char X = 0 ; X <= 50 ; X++){
         _gotoxy(X, 0);
         printf("%c", 220);
         _gotoxy(X, 20);
         printf("%c", 223);
     }
 
-    for(unsigned short int X = 1 ; X < 50 ; X++){
-        for(unsigned short int Y = 1 ; Y < 20 ; Y++){
+    for(unsigned char X = 1 ; X < 50 ; X++){
+        for(unsigned char Y = 1 ; Y < 20 ; Y++){
             _gotoxy(X, Y);
             printf("%c", 177);
         }
