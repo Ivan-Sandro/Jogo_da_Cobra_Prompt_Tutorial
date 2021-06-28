@@ -62,23 +62,37 @@ void _PLAYER::_Puxar_Corpo(void){
 }
 
 void _PLAYER::_Desenhar_Player(void){
-    for(short int X = short(Numero_Bloco_Cobra.size())-1 ; X >= 0 ; X--){
-        _gotoxy(Posisoes_Cobra_X[X], Posisoes_Cobra_Y[X]);
-        printf("%c", Representar_Numero_corpo[Numero_Bloco_Cobra[X]]);
-    }
+    _gotoxy(Posisoes_Cobra_X[Posisoes_Cobra_X.size()-1], Posisoes_Cobra_Y[Posisoes_Cobra_Y.size()-1]);
+    printf("%c", Representar_Numero_corpo[Numero_Bloco_Cobra[Posisoes_Cobra_X.size()-1]]);
+
+    _gotoxy(Posisoes_Cobra_X[1], Posisoes_Cobra_Y[1]);
+    printf("%c", Representar_Numero_corpo[Numero_Bloco_Cobra[1]]);
+    _gotoxy(Posisoes_Cobra_X[0], Posisoes_Cobra_Y[0]);
+    printf("%c", Representar_Numero_corpo[Numero_Bloco_Cobra[0]]);
+}
+
+void _PLAYER::_Somar_Pontos(void){
+    Pontos++;
+}
+void _PLAYER::_Printar_Pontos(void){
+    _gotoxy(30, 10);
+    printf("PONTOS: %d      ", Pontos);
 }
 
 void _PLAYER::_Verificar_Impacto(_PLANO &Janela){
     if(Janela._Get_Estrutura_Mapa(Posisoes_Cobra_X[0], Posisoes_Cobra_Y[0], 1) == 'B'){
         Vida--;
-    }
+    }else
     if(Janela._Get_Estrutura_Mapa(Posisoes_Cobra_X[0], Posisoes_Cobra_Y[0], 1) == 'F'){
         Janela._Mudar_Valor_Mapa(Posisoes_Cobra_X[0], Posisoes_Cobra_Y[0], 0);
+        Posisoes_Cobra_X.push_back(Posisoes_Cobra_X[0]);
+        Posisoes_Cobra_Y.push_back(Posisoes_Cobra_Y[0]);
         Numero_Bloco_Cobra.pop_back();
         Numero_Bloco_Cobra.push_back(2);
         Numero_Bloco_Cobra.push_back(0);
-        Posisoes_Cobra_X.push_back(Posisoes_Cobra_X[0]);
-        Posisoes_Cobra_Y.push_back(Posisoes_Cobra_Y[0]);
+        _Somar_Pontos();
+        _Printar_Pontos();
+        Janela._Criar_Fruta(Posisoes_Cobra_X, Posisoes_Cobra_Y);
     }
     for(short int X = 1 ; X < short(Numero_Bloco_Cobra.size())-1 ; X++){
         if(Posisoes_Cobra_X[0] == Posisoes_Cobra_X[X] && Posisoes_Cobra_Y[0] == Posisoes_Cobra_Y[X]){
@@ -92,9 +106,9 @@ char _PLAYER::_Get_Vida(void){
     return Vida;
 }
 
-std::vector <unsigned char> _PLAYER::_Get_Posisoes_Cobra_X(void){
+std::vector <unsigned char> &_PLAYER::_Get_Posisoes_Cobra_X(void){
     return Posisoes_Cobra_X;
 }
-std::vector <unsigned char> _PLAYER::_Get_Posisoes_Cobra_Y(void){
+std::vector <unsigned char> &_PLAYER::_Get_Posisoes_Cobra_Y(void){
     return Posisoes_Cobra_Y;
 }
