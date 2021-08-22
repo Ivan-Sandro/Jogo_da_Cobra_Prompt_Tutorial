@@ -13,21 +13,55 @@ void _PLAYER::_Iniciar_Posisoes(unsigned char X, unsigned char Y){
 void _PLAYER::_Direcionar_Player(void){
     if(_kbhit())
     {
+        Player_Fazendo_Curva = 1;
+
         switch(_getch())
         {
             case 'w':
+                if(Posisoes_Cobra_X.size()>2)
+                {
+                    if(Diresao == RIGHT)
+                        Numero_Bloco_Cobra[1] = 4;
+                    else if(Diresao == LEFT)
+                        Numero_Bloco_Cobra[1] = 6;
+                }
+
                 Diresao = UP;
             break;
 
             case 's':
+                if(Posisoes_Cobra_X.size()>2)
+                {
+                    if(Diresao == RIGHT)
+                        Numero_Bloco_Cobra[1] = 5;
+                    else if(Diresao == LEFT)
+                        Numero_Bloco_Cobra[1] = 7;
+                }
+
                 Diresao = DOWN;
             break;
 
             case 'a':
+                if(Posisoes_Cobra_X.size()>2)
+                {
+                    if(Diresao == UP)
+                        Numero_Bloco_Cobra[1] = 5;
+                    else if(Diresao == DOWN)
+                        Numero_Bloco_Cobra[1] = 4;
+                }
+
                 Diresao = LEFT;
             break;
 
             case 'd':
+                if(Posisoes_Cobra_X.size()>2)
+                {
+                    if(Diresao == UP)
+                        Numero_Bloco_Cobra[1] = 7;
+                    else if(Diresao == DOWN)
+                        Numero_Bloco_Cobra[1] = 6;
+                }
+
                 Diresao = RIGHT;
             break;
         }
@@ -37,21 +71,35 @@ void _PLAYER::_Mover_Player(void){
     switch(Diresao)
     {
         case UP:
+            if(Player_Fazendo_Curva == 0)
+                Numero_Bloco_Cobra[1] = 2;
+
             Posisoes_Cobra_Y[0]--;
         break;
 
         case DOWN:
+            if(Player_Fazendo_Curva == 0)
+                Numero_Bloco_Cobra[1] = 2;
+
             Posisoes_Cobra_Y[0]++;
         break;
 
         case LEFT:
+            if(Player_Fazendo_Curva == 0)
+                Numero_Bloco_Cobra[1] = 3;
+
             Posisoes_Cobra_X[0]--;
         break;
 
         case RIGHT:
+            if(Player_Fazendo_Curva == 0)
+                Numero_Bloco_Cobra[1] = 3;
+
             Posisoes_Cobra_X[0]++;
         break;
     }
+    if(Player_Fazendo_Curva !=0 && Posisoes_Cobra_X.size()>2)
+        Player_Fazendo_Curva--;
 }
 
 void _PLAYER::_Puxar_Corpo(void){
