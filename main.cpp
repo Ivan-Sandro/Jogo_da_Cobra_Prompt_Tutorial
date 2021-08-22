@@ -22,6 +22,7 @@ int main()
 
     Janela._Criar_Fruta(Jogador._Get_Posisoes_Cobra_X(), Jogador._Get_Posisoes_Cobra_Y());
     Janela._Desenhar_Plano();
+    Jogador._Printar_Pontos();
 
     do
     {
