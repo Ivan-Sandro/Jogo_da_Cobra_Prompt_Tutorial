@@ -9,6 +9,7 @@
 #define DOWN    2
 #define LEFT    3
 #define RIGHT   4
+
 class _PLAYER{
     private:
         char Vida = 1;
@@ -37,7 +38,6 @@ class _PLAYER{
         char _Get_Vida(void);
         std::vector <unsigned char> &_Get_Posisoes_Cobra_X(void);
         std::vector <unsigned char> &_Get_Posisoes_Cobra_Y(void);
-
 };
 
 #endif // PLAYER_H_INCLUDED
