@@ -22,7 +22,6 @@ class _PLAYER{
 
         unsigned char Player_Fazendo_Curva = 0;
         unsigned char Representar_Numero_corpo [8] = {32, 207, 186, 205, 188, 187, 200, 201};
-        // 0 -> espaço  ;;  1 -> cabeça  ;;  2 -> Corpo, letra "O"
 
     public:
         void _Verificar_Impacto(_PLANO &Janela);
