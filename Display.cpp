@@ -57,6 +57,24 @@ void _PLANO::_Criar_Fruta(std::vector <unsigned char> &Posisoes_Invalidas_X, std
     printf("%c", Estruturas[3][0]);
 }
 
+void _GAME_OVER(void){
+    for(unsigned char Y = 2 ; Y <= 22 ; Y++){
+        _gotoxy(5, Y);
+        printf("%c", 219);
+        _gotoxy(85, Y);
+        printf("%c", 219);
+    }
+    for(unsigned char X = 5 ; X <= 85 ; X++){
+        _gotoxy(X, 2);
+        printf("%c", 220);
+        _gotoxy(X, 22);
+        printf("%c", 223);
+    }
+
+    _gotoxy(30, 10);
+    printf("FIM DE JOGO =^(");
+}
+
 void _Desenhar_Menu(void){
     for(unsigned char Y = 1 ; Y <= 20 ; Y++){
         _gotoxy(0, Y);
