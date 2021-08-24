@@ -18,7 +18,7 @@ class _PLAYER{
         std::vector <unsigned char> Posisoes_Cobra_X;
         std::vector <unsigned char> Posisoes_Cobra_Y;
 
-        std::vector <unsigned char> Numero_Bloco_Cobra;
+        unsigned char Numero_representativo_do_Segundo_Bloco_Cobra;
 
         unsigned char Player_Fazendo_Curva = 0;
         unsigned char Representar_Numero_corpo [8] = {32, 207, 186, 205, 188, 187, 200, 201};
