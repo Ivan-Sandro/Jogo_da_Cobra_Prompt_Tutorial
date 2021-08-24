@@ -122,8 +122,8 @@ void _PLAYER::_Desenhar_Player(void){
 void _PLAYER::_Somar_Pontos(void){
     Pontos++;
 }
-void _PLAYER::_Printar_Pontos(void){
-    _gotoxy(30, 10);
+void _PLAYER::_Printar_Pontos(unsigned char X, unsigned char Y){
+    _gotoxy(X, Y);
     printf("PONTOS: %d      ", Pontos);
 }
 
@@ -139,7 +139,7 @@ void _PLAYER::_Verificar_Impacto(_PLANO &Janela){
         Numero_Bloco_Cobra.push_back(2);
         Numero_Bloco_Cobra.push_back(0);
         _Somar_Pontos();
-        _Printar_Pontos();
+        _Printar_Pontos(30, 10);
         Janela._Criar_Fruta(Posisoes_Cobra_X, Posisoes_Cobra_Y);
     }
     for(short int X = 1 ; X < short(Numero_Bloco_Cobra.size())-1 ; X++){
