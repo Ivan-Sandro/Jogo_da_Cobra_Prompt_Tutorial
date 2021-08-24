@@ -22,7 +22,7 @@ int main()
 
     Janela._Criar_Fruta(Jogador._Get_Posisoes_Cobra_X(), Jogador._Get_Posisoes_Cobra_Y());
     Janela._Desenhar_Plano();
-    Jogador._Printar_Pontos();
+    Jogador._Printar_Pontos(30, 10);
 
     do
     {
@@ -36,5 +36,12 @@ int main()
     }
     while(Jogador._Get_Vida() > 0);
     _getch();
+
+    system("cls");
+    _GAME_OVER();
+    Jogador._Printar_Pontos(50, 15);
+
+    _getch();
+
     return 0;
 }
