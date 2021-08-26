@@ -27,3 +27,26 @@
 	"Display.h"
 	"Player.h"
 
+1629677822 source:d:\meus arquivos variados\projetos\c++ - c\snake_game_cmd_basic_tutorial-main\display.cpp
+	"Display.h"
+
+1629676353 d:\meus arquivos variados\projetos\c++ - c\snake_game_cmd_basic_tutorial-main\display.h
+	<cstdio>
+	<windows.h>
+	<vector>
+	<ctime>
+
+1629820120 source:d:\meus arquivos variados\projetos\c++ - c\snake_game_cmd_basic_tutorial-main\main.cpp
+	"Display.h"
+	"Player.h"
+	<conio.h>
+	<ctime>
+
+1629818388 d:\meus arquivos variados\projetos\c++ - c\snake_game_cmd_basic_tutorial-main\player.h
+	<vector>
+	<conio.h>
+	"Display.h"
+
+1629819945 source:d:\meus arquivos variados\projetos\c++ - c\snake_game_cmd_basic_tutorial-main\player.cpp
+	"Player.h"
+
