@@ -21,7 +21,10 @@ void _PLAYER::_Direcionar_Player(void){
                 else if(Diresao == LEFT)
                     Numero_representativo_do_Segundo_Bloco_Cobra = 6;
 
-                Diresao = UP;
+                if(Diresao == DOWN)
+                    Beep(1000, 100);
+                else
+                    Diresao = UP;
             break;
 
             case 's':
@@ -30,7 +33,10 @@ void _PLAYER::_Direcionar_Player(void){
                 else if(Diresao == LEFT)
                     Numero_representativo_do_Segundo_Bloco_Cobra = 7;
 
-                Diresao = DOWN;
+                if(Diresao == UP)
+                    Beep(1000, 100);
+                else
+                    Diresao = DOWN;
             break;
 
             case 'a':
@@ -39,7 +45,10 @@ void _PLAYER::_Direcionar_Player(void){
                 else if(Diresao == DOWN)
                     Numero_representativo_do_Segundo_Bloco_Cobra = 4;
 
-                Diresao = LEFT;
+                if(Diresao == RIGHT)
+                    Beep(1000, 100);
+                else
+                    Diresao = LEFT;
             break;
 
             case 'd':
@@ -48,7 +57,10 @@ void _PLAYER::_Direcionar_Player(void){
                 else if(Diresao == DOWN)
                     Numero_representativo_do_Segundo_Bloco_Cobra = 6;
 
-                Diresao = RIGHT;
+                if(Diresao == LEFT)
+                    Beep(1000, 100);
+                else
+                    Diresao = RIGHT;
             break;
         }
     }
@@ -119,6 +131,7 @@ void _PLAYER::_Verificar_Impacto(_PLANO &Janela){
         Vida--;
     }else
     if(Janela._Get_Estrutura_Mapa(Posisoes_Cobra_X[0], Posisoes_Cobra_Y[0], 1) == 'F'){
+        Beep(500, 20);
         Janela._Mudar_Valor_Mapa(Posisoes_Cobra_X[0], Posisoes_Cobra_Y[0], 0);
         Posisoes_Cobra_X.push_back(Posisoes_Cobra_X[0]);
         Posisoes_Cobra_Y.push_back(Posisoes_Cobra_Y[0]);
