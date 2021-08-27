@@ -17,6 +17,7 @@ class _PLAYER{
 
         std::vector <unsigned char> Posisoes_Cobra_X;
         std::vector <unsigned char> Posisoes_Cobra_Y;
+        short unsigned int Tamanho_Cobra;
 
         unsigned char Numero_representativo_do_Segundo_Bloco_Cobra;
 

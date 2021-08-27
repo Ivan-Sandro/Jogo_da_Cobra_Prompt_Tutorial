@@ -6,6 +6,7 @@ void _PLAYER::_Iniciar_Posisoes(unsigned char X, unsigned char Y){
     Posisoes_Cobra_Y.push_back(Y);
     Posisoes_Cobra_X.push_back(X);
     Posisoes_Cobra_Y.push_back(Y);
+    Tamanho_Cobra = 1;
 }
 
 void _PLAYER::_Direcionar_Player(void){
@@ -101,7 +102,7 @@ void _PLAYER::_Mover_Player(void){
 }
 
 void _PLAYER::_Puxar_Corpo(void){
-    for(short int X = short(Posisoes_Cobra_X.size()) ; X > 0 ; X--){
+    for(short unsigned int X = Tamanho_Cobra ; X > 0 ; X--){
         Posisoes_Cobra_X[X] = Posisoes_Cobra_X[X-1];
         Posisoes_Cobra_Y[X] = Posisoes_Cobra_Y[X-1];
     }
@@ -111,7 +112,7 @@ void _PLAYER::_Desenhar_Player(void){
     _gotoxy(Posisoes_Cobra_X[1], Posisoes_Cobra_Y[1]);
     printf("%c", Representar_Numero_corpo[Numero_representativo_do_Segundo_Bloco_Cobra]);
 
-    _gotoxy(Posisoes_Cobra_X[Posisoes_Cobra_X.size()-1], Posisoes_Cobra_Y[Posisoes_Cobra_Y.size()-1]);
+    _gotoxy(Posisoes_Cobra_X[Tamanho_Cobra], Posisoes_Cobra_Y[Tamanho_Cobra]);
     printf("%c", Representar_Numero_corpo[0]);
 
     _gotoxy(Posisoes_Cobra_X[0], Posisoes_Cobra_Y[0]);
@@ -135,12 +136,12 @@ void _PLAYER::_Verificar_Impacto(_PLANO &Janela){
         Janela._Mudar_Valor_Mapa(Posisoes_Cobra_X[0], Posisoes_Cobra_Y[0], 0);
         Posisoes_Cobra_X.push_back(Posisoes_Cobra_X[0]);
         Posisoes_Cobra_Y.push_back(Posisoes_Cobra_Y[0]);
-
+        Tamanho_Cobra++;
         _Somar_Pontos();
         _Printar_Pontos(30, 10);
         Janela._Criar_Fruta(Posisoes_Cobra_X, Posisoes_Cobra_Y);
     }
-    for(short int X = 1 ; X < short(Posisoes_Cobra_X.size())-1 ; X++){
+    for(short unsigned int X = 1 ; X < Tamanho_Cobra ; X++){
         if(Posisoes_Cobra_X[0] == Posisoes_Cobra_X[X] && Posisoes_Cobra_Y[0] == Posisoes_Cobra_Y[X]){
             Vida--;
         }
