@@ -8,7 +8,10 @@ using namespace std;
 
 int main()
 {
+    system("title SNAKE GAME autor: Ivan Sandro Gomes Vieira Nóbrega");
     srand(time(NULL));
+
+
 
     _Desenhar_Menu();
     _getch();
