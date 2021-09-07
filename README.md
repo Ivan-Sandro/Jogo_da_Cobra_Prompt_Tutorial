@@ -12,4 +12,14 @@
   In Player.h we have the snake, your represetations like your body, drawn the snake, check impacts, etc.
   
   In Main.h we have the variable startups and the game loop.
+  
+  In Game Loop, we have 6 main functions:
+
+  Jogador._Puxar_Corpo(); -> Whenever the snake moves, her head changes places, but the position of her body needs to follow the path that the head is going, almost "pulling the body" by the path of the head.
+  
+  Jogador._Direcionar_Player(); -> This function gets the keyboard keys for change the snake direction 
+  
+  Jogador._Mover_Player(); -> This function will move the snake for the respectve direction
+  
+  Jogador._Verificar_Impacto(Janela); -> This function will check all the colisions of game
  
