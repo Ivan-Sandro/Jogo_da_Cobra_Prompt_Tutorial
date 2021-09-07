@@ -27,3 +27,4 @@
   
   Sleep(100); -> Waits 100 miliseconds to repeat the cycle of main game.
  
+  Now you can get an idea of the logic behind a Snake Game
