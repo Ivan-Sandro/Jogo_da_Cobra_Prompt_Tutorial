@@ -9,11 +9,12 @@
 #define DOWN    2
 #define LEFT    3
 #define RIGHT   4
+
 class _PLAYER{
     private:
-        char Vida = 1;
-        char Diresao = 0;
-        short int Pontos = 0;
+        char Vida;
+        char Diresao;
+        short int Pontos;
 
         std::vector <unsigned char> Posisoes_Cobra_X;
         std::vector <unsigned char> Posisoes_Cobra_Y;
@@ -21,13 +22,13 @@ class _PLAYER{
 
         unsigned char Numero_representativo_do_Segundo_Bloco_Cobra;
 
-        unsigned char Player_Fazendo_Curva = 0;
-        unsigned char Representar_Numero_corpo [8] = {32, 207, 186, 205, 188, 187, 200, 201};
+        unsigned char Player_Fazendo_Curva;
+        unsigned char Representar_Numero_corpo [8];
 
     public:
         void _Verificar_Impacto(_PLANO &Janela);
         void _Puxar_Corpo(void);
-        void _Iniciar_Posisoes(unsigned char X, unsigned char Y);
+        void _Iniciar_Player(unsigned char Posisao_Inicial_X, unsigned char Posisao_Inicial_Y);
         void _Direcionar_Player(void);
         void _Mover_Player(void);
         void _Desenhar_Player(void);
