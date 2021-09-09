@@ -11,8 +11,6 @@ int main()
     system("title SNAKE GAME autor: Ivan Sandro Gomes Vieira Nóbrega");
     srand(time(NULL));
 
-
-
     _Desenhar_Menu();
     _getch();
 
@@ -21,7 +19,7 @@ int main()
     _PLANO Janela;
     _PLAYER Jogador;
 
-    Jogador._Iniciar_Posisoes(10, 10);
+    Jogador._Iniciar_Player(10, 10);
 
     Janela._Criar_Fruta(Jogador._Get_Posisoes_Cobra_X(), Jogador._Get_Posisoes_Cobra_Y());
     Janela._Desenhar_Plano();
