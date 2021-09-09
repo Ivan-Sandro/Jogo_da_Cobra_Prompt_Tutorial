@@ -1,12 +1,28 @@
 
 #include "Player.h"
 
-void _PLAYER::_Iniciar_Posisoes(unsigned char X, unsigned char Y){
-    Posisoes_Cobra_X.push_back(X);
-    Posisoes_Cobra_Y.push_back(Y);
-    Posisoes_Cobra_X.push_back(X);
-    Posisoes_Cobra_Y.push_back(Y);
+void _PLAYER::_Iniciar_Player(unsigned char Posisao_Inicial_X, unsigned char Posisao_Inicial_Y){
+
+    Posisoes_Cobra_X.push_back(Posisao_Inicial_X);
+    Posisoes_Cobra_Y.push_back(Posisao_Inicial_Y);
+    Posisoes_Cobra_X.push_back(Posisao_Inicial_X);
+    Posisoes_Cobra_Y.push_back(Posisao_Inicial_Y);
+
     Tamanho_Cobra = 1;
+    Vida = 1;
+    Diresao = 0;
+    Pontos = 0;
+
+    Player_Fazendo_Curva = 0;
+
+    Representar_Numero_corpo[0] = 32    ;
+    Representar_Numero_corpo[1] = 207   ;
+    Representar_Numero_corpo[2] = 186   ;
+    Representar_Numero_corpo[3] = 205   ;
+    Representar_Numero_corpo[4] = 188   ;
+    Representar_Numero_corpo[5] = 187   ;
+    Representar_Numero_corpo[6] = 200   ;
+    Representar_Numero_corpo[7] = 201   ;
 }
 
 void _PLAYER::_Direcionar_Player(void){
