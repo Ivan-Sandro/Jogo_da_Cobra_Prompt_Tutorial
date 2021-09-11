@@ -1,3 +1,7 @@
+  Uma curta explicação logo a baixo em português e inglês.
+  
+  A short explanation just below in Portuguese and English.
+
 # Snake_Game_CMD_Basic_tutorial - English
 
   Snake Game is a simple game, I divided this project in 2 main files (ignoring the "main.h" file):
