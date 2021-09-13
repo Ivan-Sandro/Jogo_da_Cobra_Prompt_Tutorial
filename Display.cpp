@@ -1,6 +1,11 @@
 
 #include "Display.h"
 
+constexpr unsigned char UP     = 1;
+constexpr unsigned char DOWN   = 2;
+constexpr unsigned char LEFT   = 3;
+constexpr unsigned char RIGHT  = 4;
+
 void _gotoxy (short int X, short int Y){
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),(COORD){X, Y});
 }
