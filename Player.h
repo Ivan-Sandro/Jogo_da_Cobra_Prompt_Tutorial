@@ -5,11 +5,6 @@
 #include <conio.h>
 #include "Display.h"
 
-#define UP      1
-#define DOWN    2
-#define LEFT    3
-#define RIGHT   4
-
 class _PLAYER{
     private:
         char Vida;
