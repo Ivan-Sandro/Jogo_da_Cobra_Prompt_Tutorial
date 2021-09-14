@@ -21,7 +21,7 @@ class _PLAYER{
         unsigned char Representar_Numero_corpo [8];
 
     public:
-        void _Verificar_Impacto(_PLANO &Janela);
+        void _Verificar_Impacto(void);
         void _Puxar_Corpo(void);
         void _Iniciar_Player(unsigned char Posisao_Inicial_X, unsigned char Posisao_Inicial_Y);
         void _Direcionar_Player(void);
