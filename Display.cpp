@@ -1,23 +1,44 @@
 
 #include "Display.h"
 
-constexpr unsigned char UP     = 1;
-constexpr unsigned char DOWN   = 2;
-constexpr unsigned char LEFT   = 3;
-constexpr unsigned char RIGHT  = 4;
+unsigned char Mapa[20][20] =   {2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3,
+                                2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
+                                2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
+                                2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
+                                2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
+                                2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
+                                2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
+                                2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
+                                2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
+                                2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
+                                2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
+                                2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
+                                2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
+                                2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
+                                2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
+                                2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
+                                2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
+                                2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
+                                2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3,
+                                2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3};
+
+unsigned char Estruturas[4][2]   =  {219, 'B',
+                                     220, 'B',   // Esquerda -> Representação em ASCI
+                                     223, 'B',   // Direita  -> Tipo de Estrutura
+                                     208, 'F'};  // 'B' -> Barreira  || 'F' -> Fruta
 
 void _gotoxy (short int X, short int Y){
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),(COORD){X, Y});
 }
 
-unsigned char _PLANO::_Get_Estrutura_Mapa(unsigned char Mapa_X, unsigned char Mapa_Y, unsigned char Tipo_Estrutura){
+unsigned char _Get_Estrutura_Mapa(unsigned char Mapa_X, unsigned char Mapa_Y, unsigned char Tipo_Estrutura){
     if(Mapa[Mapa_X][Mapa_Y] != 0)
         return Estruturas[Mapa[Mapa_X][Mapa_Y]-1][Tipo_Estrutura];
     else
         return 0;
 }
 
-void _PLANO::_Desenhar_Plano(void){
+void _Desenhar_Plano(void){
     for(unsigned char X = 0 ; X < 20 ; X++){
         for(unsigned char Y = 0 ; Y < 20 ; Y++){
             if(Mapa[X][Y] != 0){
@@ -28,11 +49,11 @@ void _PLANO::_Desenhar_Plano(void){
     }
 }
 
-void _PLANO::_Mudar_Valor_Mapa(unsigned char Mapa_X, unsigned char Mapa_Y, unsigned char Valor){
+void _Mudar_Valor_Mapa(unsigned char Mapa_X, unsigned char Mapa_Y, unsigned char Valor){
     Mapa[Mapa_X][Mapa_Y] = Valor;
 }
 
-void _PLANO::_Criar_Fruta(std::vector <unsigned char> &Posisoes_Invalidas_X, std::vector <unsigned char> &Posisoes_Invalidas_Y){
+void _Criar_Fruta(std::vector <unsigned char> &Posisoes_Invalidas_X, std::vector <unsigned char> &Posisoes_Invalidas_Y){
     unsigned char Posisao_Fruta_X;
     unsigned char Posisao_Fruta_Y;
     unsigned char Posisao_Valida;
