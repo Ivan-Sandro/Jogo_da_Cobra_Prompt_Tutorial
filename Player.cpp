@@ -1,6 +1,11 @@
 
 #include "Player.h"
 
+constexpr unsigned char UP     = 1;
+constexpr unsigned char DOWN   = 2;
+constexpr unsigned char LEFT   = 3;
+constexpr unsigned char RIGHT  = 4;
+
 void _PLAYER::_Iniciar_Player(unsigned char Posisao_Inicial_X, unsigned char Posisao_Inicial_Y){
 
     Posisoes_Cobra_X.push_back(Posisao_Inicial_X);
@@ -143,19 +148,19 @@ void _PLAYER::_Printar_Pontos(unsigned char X, unsigned char Y){
     printf("PONTOS: %d      ", Pontos);
 }
 
-void _PLAYER::_Verificar_Impacto(_PLANO &Janela){
-    if(Janela._Get_Estrutura_Mapa(Posisoes_Cobra_X[0], Posisoes_Cobra_Y[0], 1) == 'B'){
+void _PLAYER::_Verificar_Impacto(){
+    if(_Get_Estrutura_Mapa(Posisoes_Cobra_X[0], Posisoes_Cobra_Y[0], 1) == 'B'){
         Vida--;
     }else
-    if(Janela._Get_Estrutura_Mapa(Posisoes_Cobra_X[0], Posisoes_Cobra_Y[0], 1) == 'F'){
+    if(_Get_Estrutura_Mapa(Posisoes_Cobra_X[0], Posisoes_Cobra_Y[0], 1) == 'F'){
         Beep(500, 20);
-        Janela._Mudar_Valor_Mapa(Posisoes_Cobra_X[0], Posisoes_Cobra_Y[0], 0);
+        _Mudar_Valor_Mapa(Posisoes_Cobra_X[0], Posisoes_Cobra_Y[0], 0);
         Posisoes_Cobra_X.push_back(Posisoes_Cobra_X[0]);
         Posisoes_Cobra_Y.push_back(Posisoes_Cobra_Y[0]);
         Tamanho_Cobra++;
         _Somar_Pontos();
         _Printar_Pontos(30, 10);
-        Janela._Criar_Fruta(Posisoes_Cobra_X, Posisoes_Cobra_Y);
+        _Criar_Fruta(Posisoes_Cobra_X, Posisoes_Cobra_Y);
     }
     for(short unsigned int X = 1 ; X < Tamanho_Cobra ; X++){
         if(Posisoes_Cobra_X[0] == Posisoes_Cobra_X[X] && Posisoes_Cobra_Y[0] == Posisoes_Cobra_Y[X]){
