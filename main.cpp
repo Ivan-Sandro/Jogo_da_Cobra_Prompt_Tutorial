@@ -16,13 +16,12 @@ int main()
 
     system("cls");
 
-    _PLANO Janela;
     _PLAYER Jogador;
 
     Jogador._Iniciar_Player(10, 10);
 
-    Janela._Criar_Fruta(Jogador._Get_Posisoes_Cobra_X(), Jogador._Get_Posisoes_Cobra_Y());
-    Janela._Desenhar_Plano();
+    _Criar_Fruta(Jogador._Get_Posisoes_Cobra_X(), Jogador._Get_Posisoes_Cobra_Y());
+    _Desenhar_Plano();
     Jogador._Printar_Pontos(30, 10);
 
     do
@@ -30,7 +29,7 @@ int main()
         Jogador._Puxar_Corpo();
         Jogador._Direcionar_Player();
         Jogador._Mover_Player();
-        Jogador._Verificar_Impacto(Janela);
+        Jogador._Verificar_Impacto();
         Jogador._Desenhar_Player();
 
         Sleep(100);
