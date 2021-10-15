@@ -59,7 +59,6 @@
   Sleep(100); -> Espera 100 milisegundos para repetir o ciclo do loop do jogo.
   
   Agora eu espero que você tenha uma ideia melhor sobre a lógica por trás de um Snake Game.
-
-
-https://user-images.githubusercontent.com/81819218/137540361-fa3e0ce8-626b-45a5-b106-dad4788266ae.mp4
+  
+https://user-images.githubusercontent.com/81819218/137540590-44b609e9-dfaa-43d4-bd92-acc4c47a0024.mp4
 
