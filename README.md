@@ -27,6 +27,7 @@
   
   Jogador._Verificar_Impacto(Janela); -> This function will check all the colisions of the game, the colision with the skane and it is body, or the snake with the structs of the map, so until, we pass as a parameter the class "_PLANO".
   
+  
   Jogador._Desenhar_Player(); -> Here we will drawn the snake, but, we do not are using a graphic system, so every time when we writes something the display updates, this causes a higher processing effort than it would be if you drew everything and updated it once, and it also makes it extremely easy for occur a visual writing bug, however, to create the feeling of snake movement, do not necessary draw all snake, just the face, the block right after the face and erase the end of the snake, for that project at least, to make the moviment sensation we do that in this project, and to make the snake curves uses the vetor "Representar_Numero_Corpo" for change the second block after the snake's head, creating this ilusion.
   
   Sleep(100); -> Waits 100 miliseconds to repeat the cycle of game loop.
@@ -58,3 +59,7 @@
   Sleep(100); -> Espera 100 milisegundos para repetir o ciclo do loop do jogo.
   
   Agora eu espero que você tenha uma ideia melhor sobre a lógica por trás de um Snake Game.
+
+
+https://user-images.githubusercontent.com/81819218/137540361-fa3e0ce8-626b-45a5-b106-dad4788266ae.mp4
+
